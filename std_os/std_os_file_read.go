@@ -106,6 +106,7 @@ func read_at_function() {
 func read_dir_function() {
 	// 读取(遍历)目录
 	f, err := os.Open("test1")
+	defer f.Close()
 	if err != nil {
 		fmt.Printf("err: %v\n", err)
 	} else {
@@ -123,7 +124,14 @@ func read_dir_function() {
 
 func read_seek_func() {
 	f, _ := os.Open("a.txt")
-	f.Seek(3, 0)
+	defer f.Close()
+	// 设置偏移量 seek返回当前偏移量和错误
+	// seek的第一个参数为偏移量，第二个参数为偏移量的起始位置
+	// 第二个参数值：  0 为文件开头 1 为当前位置 2 为文件结尾
+	ret, _ := f.Seek(3, 1)
+	fmt.Printf("ret: %v\n", ret)
+	//再次设置seek（ret,1） 相当于readat(buf , 6)
+	f.Seek(ret, 1)
 	buf := make([]byte, 5)
 	n, err := f.Read(buf)
 	if err != nil {
