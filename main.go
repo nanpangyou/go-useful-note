@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/nanpangyou/go_useful_note/std_byte"
+	"github.com/nanpangyou/go_useful_note/std_json"
 )
 
 func main() {
@@ -21,5 +21,7 @@ func main() {
 	// std_builtin.TestBuiltin()
 	// std_byte.TestByte()
 	// std_byte.TestByteReader()
-	std_byte.TestByteBuffer()
+	// std_byte.TestByteBuffer()
+	// std_time.TestTime()
+	std_json.TestJson()
 }
